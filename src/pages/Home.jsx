@@ -6,6 +6,7 @@ import ExploreJobs from '../components/ExploreJobs'
 import JobnovaSection from '../components/JobnovaSection'
 import BestCompanies from '../components/BestCompanies'
 import BlogSection from '../components/BlogSection'
+import ThemeSwitcher from '../components/ThemeSwither'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
     <JobnovaSection />
     <BestCompanies />
     <BlogSection />
+    {/* <ThemeSwitcher/> */}
     </>
   )
 }

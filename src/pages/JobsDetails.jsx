@@ -27,7 +27,7 @@ export default function JobsDetails() {
   if (!jobDetails) return <div className="text-center py-10">Job not found</div>;
   return (
     <div>
-        <OthersHero />
+        <OthersHero title={jobDetails.title} />
         <section className="max-w-5xl mx-auto p-8 bg-gray-50 rounded-lg shadow-lg mt-10">
       {/* Hero Section */}
       <div

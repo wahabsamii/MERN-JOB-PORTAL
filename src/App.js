@@ -16,9 +16,12 @@ import UpdateJob from './pages/Admin/UpdateJob';
 import AllApplications from './pages/Admin/AllApplications';
 import Dashboard from './pages/JobSeeker/Dashboard'
 import About from './pages/About';
+import Protected from './components/Protected';
+import { useSelector } from 'react-redux';
+import SearchResults from './pages/SearchResults';
 export default function App() {
+  const isAuth = useSelector(state => state.user.isAuth);
   return (
-    // <div className='text-white bg-black text-3xl'>App</div>
     <BrowserRouter>
     <Header />
     <Routes>
@@ -26,8 +29,10 @@ export default function App() {
       <Route path='/post-job' element={<PostJob /> } />
       <Route path='/job-details/:id' element={<JobsDetails /> } />
       <Route path='/contact' element={<Contact /> } />
-      <Route path='/apply' element={<Application /> } />
+      <Route path='/apply' element={<Protected isAuth={isAuth}><Application /></Protected> } />
       <Route path='/about-us' element={<About /> } />
+      
+      <Route path="/search" element={<SearchResults />} />
       {/* User Dashboard */}
       <Route path="/dashboard/seeker" element={<Dashboard />}>
           <Route path="all-jobs" element={<AllJobs />} />
@@ -35,7 +40,7 @@ export default function App() {
         </Route>
 
         {/* Admin Dashboard */}
-        <Route path="/dashboard/admin" element={<AdminDashboard />}>
+        <Route path="/dashboard/admin" element={<Protected isAuth={isAuth}><AdminDashboard /></Protected>}>
           <Route path="all-jobs" element={<AdminAllJobs />} />
           <Route path="add-job" element={<AddJob />} />
           <Route path="update-job" element={<UpdateJob />} />

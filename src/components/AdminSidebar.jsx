@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaBriefcase, FaPlusCircle, FaEdit, FaFileAlt } from "react-icons/fa";
+import { HiMiniArrowRightStartOnRectangle } from "react-icons/hi2";
 
 const AdminSidebar = () => {
   return (
@@ -63,7 +64,7 @@ const AdminSidebar = () => {
               }`
             }
           >
-            <FaFileAlt /> Logout
+            <HiMiniArrowRightStartOnRectangle /> Logout
           </NavLink>
         </li>
       </ul>

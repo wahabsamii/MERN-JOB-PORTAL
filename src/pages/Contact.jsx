@@ -4,7 +4,7 @@ import OtherHero from '../components/OtherHero'
 export default function Contact() {
   return (
     <div>
-        <OtherHero />
+        <OtherHero title='Contact Us' />
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="max-w-5xl w-full bg-white p-10 rounded-lg shadow-md flex mt-5 mb-5">
         {/* Left Side - Illustration */}

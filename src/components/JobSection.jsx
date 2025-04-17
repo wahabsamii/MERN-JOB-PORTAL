@@ -1,9 +1,11 @@
 import React from "react";
 import job1 from '../assets/both.png'
 import job2 from '../assets/job2.jpg'
+import { useSelector } from "react-redux";
 const JobSection = () => {
+  const theme = useSelector(state => state.theme.theme)
   return (
-    <section className="flex flex-col md:flex-row items-center gap-8 px-8 py-16 bg-white">
+    <section className={`flex flex-col md:flex-row items-center gap-8 px-8 py-16 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}>
       <div className="w-full md:w-1/2">
         <img
           src={job1}
@@ -28,21 +30,21 @@ const JobSection = () => {
         </button>
       </div>
       <div className="w-full md:w-1/2 space-y-4">
-        <h2 className="text-3xl font-bold">
+        <h2 className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
           Millions of jobs. <br /> Find the one that’s right for you.
         </h2>
-        <p className="text-gray-600">
+        <p className={`${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}>
           Search all the open positions on the web. Get your own personalized
           salary estimate. Read reviews on over 30000+ companies worldwide.
         </p>
-        <ul className="space-y-2">
-          <li className="flex items-center gap-2 text-gray-800">
+        <ul className={`space-y-2 ${theme === 'dark' ? 'text-white' : 'text-gray-600'}`}>
+          <li className={`flex items-center gap-2`}>
             ✅ Digital Marketing Solutions for Tomorrow
           </li>
-          <li className="flex items-center gap-2 text-gray-800">
+          <li className="flex items-center gap-2">
             ✅ Our Talented & Experienced Marketing Agency
           </li>
-          <li className="flex items-center gap-2 text-gray-800">
+          <li className="flex items-center gap-2 ">
             ✅ Create your own skin to match your brand
           </li>
         </ul>
