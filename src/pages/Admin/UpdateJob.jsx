@@ -19,7 +19,7 @@ const UpdateJob = () => {
   // Fetch job details
   const fetchJob = async () => {
     try {
-      const res = await axios.get(`/api/job/getone/${jobId}`);
+      const res = await axios.get(`https://jobnova-backend.vercel.app/api/job/getone/${jobId}`);
       const job = res.data.job;
       setJob(job);
       setFormData({
@@ -66,7 +66,7 @@ const UpdateJob = () => {
         }
       }
 
-      const res = await axios.put(`/api/job/update/${jobId}`, data, {
+      const res = await axios.put(`https://jobnova-backend.vercel.app/api/job/update/${jobId}`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

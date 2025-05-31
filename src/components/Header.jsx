@@ -25,13 +25,13 @@ export default function Header() {
     const [password, setPassword] = useState("");
     const [registeruser, setRegisteruser] = useState(false);
     const [userMenu, setuserMenu] = useState(false);
-    console.log("registeruser status checking", registeruser);
+    // console.log("registeruser status checking", registeruser);
 
     const handelReg = async () => {
       if (!registeruser) {
         // Login logic
         try {
-          const response = await axios.post("/api/user/login", {
+          const response = await axios.post("https://jobnova-backend.vercel.app/api/user/login", {
             email: email,
             password: password,
           });
@@ -53,7 +53,7 @@ export default function Header() {
       } else {
         // Registration logic
         try {
-          const response = await axios.post("/api/user/register", {
+          const response = await axios.post("https://jobnova-backend.vercel.app/api/user/register", {
             email: email,
             password: password,
             phone: phone,

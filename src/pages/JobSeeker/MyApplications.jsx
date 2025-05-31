@@ -5,8 +5,7 @@ export default function MyApplications() {
   const {currentUser} = useSelector((state) => state.user);
   const [myJobs, setmyJobs] = useState([]);
   const fetchSpecficMyJobs = async() => {
-    const resposne = await axios.post(`/api/application/userapp`, {id : currentUser._id});
-    console.log("resposneresposne",resposne.data)
+    const resposne = await axios.post(`https://jobnova-backend.vercel.app/api/application/userapp`, {id : currentUser._id});
     setmyJobs(resposne.data)
   }
   useEffect(() => {

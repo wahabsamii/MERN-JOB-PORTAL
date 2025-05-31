@@ -9,7 +9,7 @@ const AdminAllJobs = () => {
 
   const getAllJobs = async () => {
     try {
-      const response = await axios.get("/api/job/getall");
+      const response = await axios.get("https://jobnova-backend.vercel.app/api/job/getall");
       setAllJobs(response.data.jobs);
     } catch (error) {
       console.error("Error fetching jobs:", error);
@@ -26,7 +26,7 @@ const AdminAllJobs = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`/api/job/delete/${id}`);
+      const res = await axios.delete(`https://jobnova-backend.vercel.app/api/job/delete/${id}`);
       if (res.data.success) {
         alert('Deleted')
       }

@@ -6,7 +6,7 @@ const AllApplications = () => {
 
   const fetchAllApplications = async () => {
     try {
-      const response = await axios.get("/api/application/all/application");
+      const response = await axios.get("https://jobnova-backend.vercel.app/api/application/all/application");
       setAllApplications(response.data.applications);
     } catch (error) {
       console.error("Error fetching applications:", error);

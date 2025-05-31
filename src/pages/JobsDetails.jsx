@@ -10,7 +10,7 @@ export default function JobsDetails() {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const resposne = await axios.get(`/api/job/getone/${id}`);
+        const resposne = await axios.get(`https://jobnova-backend.vercel.app/api/job/getone/${id}`);
         setjobDetails(resposne.data.job);
       } catch (error) {
         console.error("Error fetching job details:", error);

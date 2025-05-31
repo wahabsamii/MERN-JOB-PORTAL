@@ -44,7 +44,7 @@ export default function Application() {
   
   
     try {
-      await axios.post("/api/application/post", formData, {
+      await axios.post("https://jobnova-backend.vercel.app/api/application/post", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });

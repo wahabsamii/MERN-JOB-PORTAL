@@ -29,7 +29,7 @@ const PostJob = () => {
       setFixedSalary("");
     }
 
-    await axios.post("/api/job/post",
+    await axios.post("https://jobnova-backend.vercel.app/api/job/post",
       fixedSalary.length >= 4
         ? { title, description, category, country, city, location, fixedSalary, postedBy }
         : { title, description, category, country, city, location, salaryFrom, salaryTo, postedBy },

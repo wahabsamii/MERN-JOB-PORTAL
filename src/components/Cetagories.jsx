@@ -10,8 +10,8 @@ const categories = [
   { id: 3, title: "Software Engineer", jobs: 60, icon: "💻" },
   { id: 4, title: "Human Resource HR", jobs: 74, icon: "📂" },
   { id: 5, title: "IT & Networking", jobs: 20, icon: "🔌" },
-  { id: 6, title: "IT & Networking", jobs: 20, icon: "🔌" },
-  { id: 7, title: "IT & Networking", jobs: 20, icon: "🔌" },
+  { id: 6, title: "Software Testing", jobs: 20, icon: "🔌" },
+  { id: 7, title: "Networking Routing", jobs: 56, icon: "🔌" },
 ];
 
 export default function Cetagories() {

@@ -12,7 +12,7 @@ export default function ExploreJobs() {
 
   const fetchJobs = async() => {
     try {
-      const response = await axios.get("/api/job/getall");
+      const response = await axios.get("https://jobnova-backend.vercel.app/api/job/getall");
       setJobs(response.data.jobs)
     } catch (error) {
       console.log(error)
