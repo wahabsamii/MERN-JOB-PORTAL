@@ -2,10 +2,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import {useSelector} from 'react-redux';
 export default function MyApplications() {
-  const currentUser = useSelector((state) => state.user);
+  const {currentUser} = useSelector((state) => state.user);
   const [myJobs, setmyJobs] = useState([]);
   const fetchSpecficMyJobs = async() => {
-    const resposne = await axios.post(`/api/application/userapp`, {id : currentUser.currentUser._id});
+    const resposne = await axios.post(`/api/application/userapp`, {id : currentUser._id});
     console.log("resposneresposne",resposne.data)
     setmyJobs(resposne.data)
   }

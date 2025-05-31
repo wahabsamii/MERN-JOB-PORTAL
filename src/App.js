@@ -19,6 +19,7 @@ import About from './pages/About';
 import Protected from './components/Protected';
 import { useSelector } from 'react-redux';
 import SearchResults from './pages/SearchResults';
+import Profile from './pages/Admin/Profile';
 export default function App() {
   const isAuth = useSelector(state => state.user.isAuth);
   return (
@@ -40,11 +41,12 @@ export default function App() {
         </Route>
 
         {/* Admin Dashboard */}
-        <Route path="/dashboard/admin" element={<Protected isAuth={isAuth}><AdminDashboard /></Protected>}>
+        <Route path="/dashboard/admin/" element={<Protected isAuth={isAuth}><AdminDashboard /></Protected>}>
           <Route path="all-jobs" element={<AdminAllJobs />} />
           <Route path="add-job" element={<AddJob />} />
-          <Route path="update-job" element={<UpdateJob />} />
+          <Route path="update-job/:id" element={<UpdateJob />} />
           <Route path="all-applications" element={<AllApplications />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
     </Routes>
     <Footer />

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AdminAllJobs = () => {
   const [jobsall, setAllJobs] = useState([]);
-  const navigate = useNavigate(); // ✅ Fixed: Import useNavigate
+  const navigate = useNavigate();
   const logo = "https://cdn-icons-png.flaticon.com/512/124/124010.png";
 
   const getAllJobs = async () => {
@@ -16,9 +16,27 @@ const AdminAllJobs = () => {
     }
   };
 
+  const handleUpdate = async (id) => {
+    try {
+      navigate(`/dashboard/admin/update-job/${id}`);
+    } catch (error) {
+      console.error('Navigation failed', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await axios.delete(`/api/job/delete/${id}`);
+      if (res.data.success) {
+        alert('Deleted')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useEffect(() => {
     getAllJobs();
-  }, []);
+  }, [jobsall, handleDelete]);
 
   return (
     <div className="mt-8">
@@ -29,7 +47,7 @@ const AdminAllJobs = () => {
           {jobsall.map((job) => (
             <div
               key={job._id}
-              onClick={() => navigate(`/job-details/${job._id}`)}
+              // onClick={() => navigate(`/job-details/${job._id}`)}
               className="border p-6 rounded-xl shadow-md cursor-pointer transition-transform hover:scale-105"
             >
               <div className="flex items-center gap-4">
@@ -46,6 +64,10 @@ const AdminAllJobs = () => {
               </span>
               <div className="mt-4">
                 <p className="text-gray-700 line-clamp-2">{job.description}</p>
+              </div>
+              <div className="mt-4">
+                <button className="p-2 bg-red-600 text-white rounded-sm" onClick={() => handleDelete(job._id)}>Delete</button>
+                <button className="p-2 bg-green-600 text-white rounded-sm ml-2" onClick={() => handleUpdate(job._id)}>Update</button>
               </div>
             </div>
           ))}

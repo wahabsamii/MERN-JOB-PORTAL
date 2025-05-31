@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function Application() {
@@ -12,7 +13,7 @@ export default function Application() {
 
   const navigateTo = useNavigate();
   // const { id } = useParams();
-  const id = "67d6a31aaa3163b780aaf82e"
+  const id = "67d6a2afaa3163b780aaf82a"
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -38,27 +39,39 @@ export default function Application() {
     formData.append("phone", phone);
     formData.append("address", address);
     formData.append("coverLetter", coverLetter);
-    formData.append("resume", resume); // File must match "resume"
+    formData.append("resume", resume);
     formData.append("jobId", id);
   
-    console.log("FormData content:", [...formData.entries()]); // Debugging
   
     try {
       await axios.post("/api/application/post", formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log("Application submitted!");
+      alert('Application Submited');
+      setName('');
+      setEmail('');
+      setAddress('');
+      setResume('');
+      setCoverLetter('');
+      setPhone('');
     } catch (error) {
       console.log("Upload Error:", error);
     }
   };
+  const theme = useSelector((state) => state.theme.theme);
   
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
-        <h2 className="text-3xl font-semibold text-gray-800 text-center mb-6">Apply for this Job</h2>
+    <div className={`min-h-screen ${
+      theme === 'light' ? 'bg-white' : 'bg-gray-900'
+    } flex items-center justify-center p-6`}>
+      <div className={` ${
+      theme === 'light' ? 'bg-white' : 'bg-black'
+    } shadow-lg rounded-lg p-8 max-w-2xl w-full`}>
+        <h2 className={`text-3xl font-semibold ${
+      theme === 'light' ? 'text-black' : 'text-white'
+    } text-center mb-6`}>Apply for this Job</h2>
         
         <form onSubmit={handleApplication} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
@@ -94,7 +107,9 @@ export default function Application() {
           ></textarea>
 
           <div>
-            <label className="block text-lg font-medium text-gray-700 mb-2">Upload Resume</label>
+            <label className={`block text-lg font-medium ${
+      theme === 'light' ? 'text-gray-900' : 'text-white'
+    } text-gray-700 mb-2`}>Upload Resume</label>
             <input 
               type="file" accept=".pdf, .jpg, .png" 
               onChange={handleFileChange}

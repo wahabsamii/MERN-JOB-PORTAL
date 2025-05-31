@@ -13,7 +13,9 @@ import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 export default function Header() {
     const isAuth = useSelector(state => state.user.isAuth);
-    const currentUser = useSelector(state => state.user);
+
+    const {currentUser} = useSelector(state => state.user);
+    console.log('current', currentUser)
     const theme = useSelector((state) => state.theme.theme);
     const dispatch = useDispatch();
     const [showmodel, setShowmodel] = useState(false);
@@ -96,12 +98,12 @@ export default function Header() {
       </button>
       <h2 className="text-xl font-bold mb-4 text-center">{registeruser ? "Register Your Account" : "Login in your Account"}</h2>
       <div>
-      {registeruser && <input placeholder='Enter Your Name' onChange={(e) => setName(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-sm'/>}
+      {registeruser && <input placeholder='Enter Your Name' onChange={(e) => setName(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-xl'/>}
       
-      <input placeholder='Enter Your Email' onChange={(e) => setEmail(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-sm'/>
-      {registeruser && <input placeholder='Enter Your Phone' onChange={(e) => setPhone(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-sm'/>}
-      <input placeholder='Enter Your Password' onChange={(e) => setPassword(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-sm'/>
-      <button className='bg-blue-500 p-2 mt-4 w-full text-white' onClick={handelReg}>{registeruser ? "Register" : "Login"}</button>
+      <input placeholder='Enter Your Email' onChange={(e) => setEmail(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-xl'/>
+      {registeruser && <input placeholder='Enter Your Phone' onChange={(e) => setPhone(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-xl'/>}
+      <input placeholder='Enter Your Password' onChange={(e) => setPassword(e.target.value)} className='w-full border-black mb-3 border-2 p-2 rounded-xl'/>
+      <button className='bg-blue-500 p-2 mt-4 w-full text-white rounded-xl' onClick={handelReg}>{registeruser ? "Register" : "Login"}</button>
       <p className="mt-3 text-center cursor-pointer">
         <Toaster />
   {registeruser ? "Already have an account?" : "Don't have an account?"}
@@ -130,7 +132,7 @@ export default function Header() {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     <div className="relative group">
-                      <NavLink to="/" className="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700">
+                      <NavLink to="/"  className={({isActive}) => isActive ? "rounded-md px-3 py-2 text-sm font-medium bg-white text-black" : "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"}>
                         Home
                       </NavLink>
                       <div className="absolute left-0 hidden w-48 bg-white shadow-md group-hover:block mt-4 rounded-sm overflow-hidden">
@@ -148,9 +150,9 @@ export default function Header() {
                         <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Roles</a>
                       </div>
                     </div>
-                    <NavLink to="/apply" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Apply Now</NavLink>
-                    <NavLink to="/about-us" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</NavLink>
-                    <NavLink to="/contact" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</NavLink>
+                    <NavLink to="/apply"  className={({isActive}) => isActive ? "rounded-md px-3 py-2 text-sm font-medium bg-white text-black" : "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"} >Apply Now</NavLink>
+                    <NavLink to="/about-us"  className={({isActive}) => isActive ? "rounded-md px-3 py-2 text-sm font-medium bg-white text-black" : "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"} >About Us</NavLink>
+                    <NavLink to="/contact"  className={({isActive}) => isActive ? "rounded-md px-3 py-2 text-sm font-medium bg-white text-black" : "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700"}>Contact Us</NavLink>
                   </div>
                 </div>
               </div>
@@ -164,11 +166,11 @@ export default function Header() {
                     isAuth ? (
                         <div className="relative group">
                     <button onClick={() => setuserMenu(true)} className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <img className="size-8 rounded-full" src={currentUser.currentUser.image} alt="" />
+                      <img className="size-8 rounded-full" src={currentUser.image} alt="" />
                     </button>
                     {
                       userMenu && <div className="absolute right-0 mt-2 w-48 bg-white shadow-md group-hover:block rounded-xl overflow-hidden">
-                      <NavLink onClick={() => setuserMenu(false)} to={currentUser.currentUser.role == "job seeker" ? '/dashboard/seeker' : '/dashboard/admin'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex flex-row items-center gap-2 "><LuUser /> Your Profile</NavLink>
+                      <NavLink onClick={() => setuserMenu(false)} to={currentUser.role == "job seeker" ? '/dashboard/seeker' : '/dashboard/admin/all-jobs'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex flex-row items-center gap-2 "><LuUser /> Your Profile</NavLink>
                       <a onClick={() => setuserMenu(true)} href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex flex-row items-center gap-2"><IoSettingsOutline /> Settings</a>
                       <a onClick={handleLogout} href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex flex-row items-center gap-2"><FaArrowRightFromBracket/> Sign out</a>
                     </div>

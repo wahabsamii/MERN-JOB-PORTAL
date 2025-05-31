@@ -1,4 +1,5 @@
 import { FaPhone, FaMicrochip, FaHeartbeat, FaClock } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const features = [
   {
@@ -24,9 +25,14 @@ const features = [
 ];
 
 export default function JobnovaSection() {
+  const theme = useSelector((state) => state.theme.theme);
   return (
-    <section className="py-16 bg-white text-center">
-      <h2 className="text-3xl font-bold mb-4">Here's why you'll love it Jobnova</h2>
+    <section className={`py-16 ${
+      theme === 'light' ? 'bg-white' : 'bg-gray-900'
+    } text-center`}>
+      <h2 className={`text-3xl font-bold mb-4 ${
+      theme === 'light' ? 'text-black' : 'text-white'
+    }`}>Here's why you'll love it Jobnova</h2>
       <p className="text-gray-500 mb-10 max-w-2xl mx-auto">
         Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 30000+ companies worldwide.
       </p>

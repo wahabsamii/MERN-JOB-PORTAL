@@ -1,28 +1,44 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SearchResults = () => {
-  const { jobs, searchTerm } = useSelector((state) => state.jobs);
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchTerm = queryParams.get('query')
+  const [jobs, setJobs] = useState([])
   const logo = "https://cdn-icons-png.flaticon.com/512/124/124010.png";
-  // Filter jobs based on title or description matching the search term
-  const filteredJobs = jobs.filter((job) =>
-    job.title.toLowerCase().includes(searchTerm) || job.description.toLowerCase().includes(searchTerm)
-);
-console.log("Searched Jobs", filteredJobs)
+  const fetchJobs = async() => {
+    try {
+      const response = await axios.get("/api/job/getall");
+      setJobs(response.data.jobs)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchJobs()
+  }, []);
 
+  const filteredJobs = jobs.filter((job) =>
+    job.title.toLowerCase().includes(searchTerm) || job.description.toLowerCase().includes(searchTerm));
+    
+   const theme = useSelector((state) => state.theme.theme);
   return (
-    <div className="p-6">
-      <h2 className="text-3xl font-bold text-center mb-6">Search Results</h2>
+    <div className={`p-6 ${
+      theme === 'light' ? 'bg-blue-500' : 'bg-gray-800'
+    }`}>
+      <h2 className={`text-3xl font-bold ${theme === 'light' ? 'text-black' : 'text-white'} text-center mb-6`}>Search Results</h2>
 
       {filteredJobs.length > 0 ? (
         <ul className="space-y-4">
-          {filteredJobs.map((job) => (
+          {filteredJobs.map((job) => ( 
           <div
             onClick={() => navigate(`/job-details/${job._id}`)}
             key={job._id}
-            className="border p-6 rounded-xl shadow-md w-80 cursor-pointer"
+            className="border p-6 rounded-xl shadow-md bg-white w-80 cursor-pointer"
           >
             <div className="flex items-center gap-4">
               <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Company Logo" className="w-12 h-12" />

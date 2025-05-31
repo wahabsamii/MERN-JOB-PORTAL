@@ -57,6 +57,18 @@ const AdminSidebar = () => {
         </li>
         <li>
           <NavLink
+            to="/dashboard/admin/profile"
+            className={({ isActive }) =>
+              `flex items-center gap-2 p-2 rounded-md ${
+                isActive ? "bg-gray-700 text-blue-400" : "hover:text-gray-300"
+              }`
+            }
+          >
+            <HiMiniArrowRightStartOnRectangle /> Edit Profile
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/dashboard/admin/all-ap"
             className={({ isActive }) =>
               `flex items-center gap-2 p-2 rounded-md ${

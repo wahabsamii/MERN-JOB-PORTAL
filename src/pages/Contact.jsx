@@ -1,12 +1,18 @@
 import React from 'react'
 import logolft from '../assets/contact.svg'
 import OtherHero from '../components/OtherHero'
+import { useSelector } from 'react-redux';
 export default function Contact() {
+  const theme = useSelector((state) => state.theme.theme);
   return (
     <div>
         <OtherHero title='Contact Us' />
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="max-w-5xl w-full bg-white p-10 rounded-lg shadow-md flex mt-5 mb-5">
+    <div className={`flex justify-center items-center min-h-screen ${
+      theme === 'light' ? 'bg-white' : 'bg-black'
+    }`}>
+      <div className={`max-w-5xl w-full ${
+      theme === 'light' ? 'bg-white text-black' : 'bg-gray-800 text-white'
+    } p-10 rounded-lg shadow-md flex mt-5 mb-5`}>
         {/* Left Side - Illustration */}
         <div className="w-1/2 p-6">
           <img
@@ -18,12 +24,12 @@ export default function Contact() {
 
         {/* Right Side - Form */}
         <div className="w-1/2 p-6">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Get in touch!</h2>
+        <h2 className={`text-3xl font-semibold ${theme === 'light' ? 'text-gray-800' : ' text-white'} mb-6`}>Get in touch!</h2>
 
           <form className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-gray-600">Your Name *</label>
+                <label className={`${theme === 'light' ? 'text-gray-600' : ' text-white'} `}>Your Name *</label>
                 <input
                   type="text"
                   placeholder="Name"
@@ -31,7 +37,7 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="text-gray-600">Your Email *</label>
+                <label className={`${theme === 'light' ? 'text-gray-600' : ' text-white'} `}>Your Email *</label>
                 <input
                   type="email"
                   placeholder="Email"
@@ -41,7 +47,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="text-gray-600">Subject</label>
+              <label className={`${theme === 'light' ? 'text-gray-600' : ' text-white'} `}>Subject</label>
               <input
                 type="text"
                 placeholder="Subject"
@@ -50,7 +56,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <label className="text-gray-600">Comments *</label>
+              <label className={`${theme === 'light' ? 'text-gray-600' : ' text-white'} `}>Comments *</label>
               <textarea
                 rows="4"
                 placeholder="Message"

@@ -1,7 +1,9 @@
 import { FaFacebook, FaAndroid, FaSpotify, FaGoogle, FaLinkedin } from "react-icons/fa";
 import { SiLenovo } from "react-icons/si";
 import officeSpace from '../assets/office-space.jpg'
+import { useSelector } from "react-redux";
 export default function BestCompanies() {
+  const theme = useSelector((state) => state.theme.theme);
   const companies = [
     { name: "Facebook", icon: <FaFacebook className='text-blue-600 text-2xl' /> },
     { name: "Google", icon: <FaGoogle className='text-red-600 text-2xl' /> },
@@ -12,9 +14,13 @@ export default function BestCompanies() {
   ];
 
   return (
-    <section className="py-16 px-6 lg:px-24 bg-white flex flex-col lg:flex-row items-center gap-10">
+    <section className={`py-16 px-6 lg:px-24 ${
+      theme === 'light' ? 'bg-white' : 'bg-gray-900'
+    } flex flex-col lg:flex-row items-center gap-10`}>
       <div className="flex-1">
-        <h2 className="text-3xl font-bold text-gray-900">Find Best Companies.</h2>
+        <h2 className={`text-3xl font-bold ${
+      theme === 'light' ? 'text-gray-900' : 'text-white'
+    } text-gray-900`}>Find Best Companies.</h2>
         <p className="text-gray-500 mt-3 text-lg">
           Search all the open positions on the web. Get your own personalized salary estimate.
           Read reviews on over 30,000+ companies worldwide.

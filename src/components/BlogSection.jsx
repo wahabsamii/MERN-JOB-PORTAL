@@ -1,6 +1,9 @@
 import { Card, CardContent } from "./card"; // Adjust the path
-
+import blog1 from '../assets/blog1.jpeg'
+import blog2 from '../assets/blog2.jpg'
+import blog3 from '../assets/blog3.jpeg'
 import { Calendar, Clock } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const blogs = [
   {
@@ -9,7 +12,7 @@ const blogs = [
     date: "13th Sep 2023",
     readTime: "5 min read",
     category: "Arts",
-    image: "https://source.unsplash.com/random/400x300/?office,meeting",
+    image: blog1,
     author: "Google",
   },
   {
@@ -18,7 +21,7 @@ const blogs = [
     date: "29th Nov 2023",
     readTime: "5 min read",
     category: "Illustration",
-    image: "https://source.unsplash.com/random/400x300/?workspace,team",
+    image: blog2,
     author: "Facebook",
   },
   {
@@ -27,16 +30,21 @@ const blogs = [
     date: "29th Dec 2023",
     readTime: "5 min read",
     category: "Music",
-    image: "https://source.unsplash.com/random/400x300/?coworking,office",
+    image: blog3,
     author: "Linkedin",
   },
 ];
 
 export default function BlogSection() {
+  const theme = useSelector((state) => state.theme.theme);
   return (
-    <section className="py-12 px-6">
+    <section className={`py-12 px-6 ${
+      theme === 'light' ? 'bg-white' : 'bg-gray-900'
+    }`}>
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold">Latest Blog or News</h2>
+        <h2 className={`text-3xl font-bold ${
+      theme === 'light' ? 'text-black' : 'text-white'
+    }`}>Latest Blog or News</h2>
         <p className="text-gray-500 mt-2">
           Search all the open positions on the web. Get your own personalized salary estimate.
           Read reviews on over 30000+ companies worldwide.

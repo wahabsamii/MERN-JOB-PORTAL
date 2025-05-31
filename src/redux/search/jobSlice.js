@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Fetch all jobs from backend
-export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
+export const fetchJobs = createAsyncThunk(async () => {
   const response = await axios.get("/api/job/getall");
   return response.data.jobs; // Return jobs from API response
 });
